@@ -1,0 +1,274 @@
+export const description =
+  'On this page, we’ll dive into the different block endpoints you can use to manage block programmatically.'
+
+# Block
+
+Block are how you share things in Protocol — they allow you to send all sorts of files to your contacts and groups. On this page, we'll dive into the different block endpoints you can use to manage block programmatically. We'll look at how to query, upload, update, and delete block. {{ className: 'lead' }}
+
+## The block model
+
+The block model contains all the information about the files you send to your contacts and groups, including the name, type, and size.
+
+### Properties
+
+<Properties>
+  <Property name="_id" type="string">
+    Unique identifier for the block.
+  </Property>
+  <Property name="user_id" type="string">
+    Unique identifier for the user associated with the block.
+  </Property>
+  <Property name="block_user_id" type="string">
+    Unique identifier for the user associated with the block.
+  </Property>
+  <Property name="created_at" type="timestamp">
+    Timestamp of when the block was created.
+  </Property>
+</Properties>
+
+---
+
+## List all block {{ tag: 'GET', label: '/v1/block' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your block (in a conversation if a conversation id is provided). By default, a maximum of ten block are shown per page.
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="limit" type="integer">
+        Limit the number of block returned.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/block">
+
+    ```bash {{ title: 'cURL' }}
+    curl -G https://api.protocol.chat/v1/block \
+      -H "Authorization: Bearer {token}" \
+      -d conversation_id="xgQQXg3hrtjh7AvZ" \
+      -d limit=10
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.block.list()
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.block.list()
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->block->list();
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "has_more": false,
+      "data": [
+        {
+          "_id": "Nc6yKKMpcxiiFxp6",
+          "user_id": "LoPsJaMcPBuFNjg1",
+          "block_user_id": "KsgT72kYksvaDrUi",
+          "created_at": 692233200
+        },
+        {
+          "id": "hSIhXBhNe8X1d8Et"
+          // ...
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Create an block {{ tag: 'POST', label: '/v1/block' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to upload a new block to a conversation. See the code examples for how to send the file to the Protocol API.
+
+    ### Required attributes
+
+    <Properties>
+      <Property name="user_id" type="string">
+        Unique identifier for the user associated with the block.
+      </Property>
+      <Property name="block_user_id" type="string">
+        Unique identifier for the user associated with the block.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="POST" label="/v1/block">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.chat/v1/block \
+      -H "Authorization: Bearer {token}" \
+      -F file="../Invoice_room_service__Plaza_Hotel.pdf"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.block.create({
+      user_id: 'LoPsJaMcPBuFNjg1',
+      block_user_id: 'KsgT72kYksvaDrUi',
+     })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.block.create(file=file)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->block->create([
+      'file' => $file,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "block_user_id": "KsgT72kYksvaDrUi",
+      "created_at": 692233200
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Retrieve an block {{ tag: 'GET', label: '/v1/block/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve an block by providing the block id. Refer to [the list](#the-block-model) at the top of this page to see which properties are included with block objects.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/block/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.chat/v1/block/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.block.get('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.block.get("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->block->get('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "block_user_id": "KsgT72kYksvaDrUi",
+      "created_at": 692233200
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Delete an block {{ tag: 'DELETE', label: '/v1/block/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to delete block. Note: This will permanently delete the file.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="DELETE" label="/v1/block/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X DELETE https://api.protocol.chat/v1/block/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.block.delete('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.block.delete("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->block->delete('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+  </Col>
+</Row>

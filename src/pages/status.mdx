@@ -1,0 +1,289 @@
+export const description =
+  'On this page, we’ll dive into the different status endpoints you can use to manage status programmatically.'
+
+# Status
+
+Status are how you share things in Protocol — they allow you to send all sorts of files to your contacts and groups. On this page, we'll dive into the different status endpoints you can use to manage status programmatically. We'll look at how to query, upload, update, and delete status. {{ className: 'lead' }}
+
+## The status model
+
+The status model contains all the information about the files you send to your contacts and groups, including the name, type, and size.
+
+### Properties
+
+<Properties>
+  <Property name="_id" type="string">
+    Unique identifier for the status.
+  </Property>
+  <Property name="user_id" type="string">
+    Unique identifier for the user associated with the status.
+  </Property>
+  <Property name="filename" type="string">
+    The filename for the status.
+  </Property>
+  <Property name="file_url" type="string">
+    The URL for the attached file.
+  </Property>
+  <Property name="file_type" type="string">
+    The MIME type of the attached file.
+  </Property>
+  <Property name="file_size" type="integer">
+    The file size of the status in bytes.
+  </Property>
+  <Property name="created_at" type="timestamp">
+    Timestamp of when the status was created.
+  </Property>
+</Properties>
+
+---
+
+## List all status {{ tag: 'GET', label: '/v1/status' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your status (in a conversation if a conversation id is provided). By default, a maximum of ten status are shown per page.
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="limit" type="integer">
+        Limit the number of status returned.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/status">
+
+    ```bash {{ title: 'cURL' }}
+    curl -G https://api.protocol.chat/v1/status \
+      -H "Authorization: Bearer {token}" \
+      -d conversation_id="xgQQXg3hrtjh7AvZ" \
+      -d limit=10
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.status.list()
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.status.list()
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->status->list();
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "has_more": false,
+      "data": [
+        {
+          "_id": "Nc6yKKMpcxiiFxp6",
+          "user_id": "LoPsJaMcPBuFNjg1",
+          "filename": "myStatus.png",
+          "file_url": "https://assets.protocol.chat/status/myStatus.png",
+          "file_type": "application/pdf",
+          "file_size": 21352,
+          "created_at": 692233200
+        },
+        {
+          "id": "hSIhXBhNe8X1d8Et"
+          // ...
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Create an status {{ tag: 'POST', label: '/v1/status' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to upload a new status to a conversation. See the code examples for how to send the file to the Protocol API.
+
+    ### Required attributes
+
+    <Properties>
+      <Property name="user_id" type="string">
+        Unique identifier for the user associated with the status.
+      </Property>
+      <Property name="file" type="string">
+        The file you want to add as an status.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="POST" label="/v1/status">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.chat/v1/status \
+      -H "Authorization: Bearer {token}" \
+      -F file="../Invoice_room_service__Plaza_Hotel.pdf"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.status.create({ file })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.status.create(file=file)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->status->create([
+      'file' => $file,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "filename": "myStatus.png",
+      "file_url": "https://assets.protocol.chat/status/myStatus.png",
+      "file_type": "application/png",
+      "file_size": 2135,
+      "created_at": 692233200
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Retrieve an status {{ tag: 'GET', label: '/v1/status/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve an status by providing the status id. Refer to [the list](#the-status-model) at the top of this page to see which properties are included with status objects.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/status/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.chat/v1/status/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.status.get('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.status.get("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->status->get('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "filename": "myStatus.png",
+      "file_url": "https://assets.protocol.chat/status/myStatus.png",
+      "file_type": "application/png",
+      "file_size": 2135,
+      "created_at": 692233200
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Delete an status {{ tag: 'DELETE', label: '/v1/status/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to delete status. Note: This will permanently delete the file.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="DELETE" label="/v1/status/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X DELETE https://api.protocol.chat/v1/status/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.status.delete('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.status.delete("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->status->delete('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+  </Col>
+</Row>
