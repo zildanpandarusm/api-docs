@@ -200,7 +200,9 @@ export const navigation = [
     title: 'Resources',
     links: [
       { title: 'Users', href: '/users' },
-      { title: 'Block', href: '/block' },
+      { title: 'Privacy Settings', href: '/privacysettings' },
+      { title: 'Chat Settings', href: '/chatsettings' },
+      { title: 'Notification Settings', href: '/notificationsettings' },
       { title: 'Contacts', href: '/contacts' },
       { title: 'Conversations', href: '/conversations' },
       { title: 'Messages', href: '/messages' },

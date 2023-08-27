@@ -1,0 +1,421 @@
+export const description =
+  'On this page, we’ll dive into the different notification settings endpoints you can use to manage notification settings programmatically.'
+
+# Notification Settings
+
+Notification settings refers to the action of preventing someone from communicating with you. On this page, we'll dive into the different notification settings endpoints you can use to manage notification settings programmatically. We'll look at how to query, upload, update, and delete notification settings. {{ className: 'lead' }}
+
+## The notification settings model
+
+The notification settings model comprises comprehensive information about the contacts you have notification settingsed.
+
+### Properties
+
+<Properties>
+  <Property name="_id" type="string">
+    Unique identifier for the notification settings.
+  </Property>
+  <Property name="user_id" type="string">
+    Unique identifier for the user associated with the notification settings.
+  </Property>
+  <Property name="notification settingsal_tone" type="string">
+    The notification settingsal tone for user.
+  </Property>
+  <Property name="notification_tone" type="string">
+    The notification tone for user.
+  </Property>
+  <Property name="shakes" type="string">
+    The shakes for user.
+  </Property>
+  <Property name="popup_notification" type="string">
+    The popup notification for user.
+  </Property>
+  <Property name="light" type="string">
+    The light for user.
+  </Property>
+  <Property name="notification_preview" type="timestamp">
+    The notification preview for user.
+  </Property>
+  <Property name="reaction_notification" type="timestamp">
+    The reaction notification for user.
+  </Property>
+  <Property name="notification_tone_group" type="timestamp">
+    The notification tone group for user.
+  </Property>
+  <Property name="shakes_group" type="timestamp">
+    The shakes group for user.
+  </Property>
+  <Property name="popup_notification_group" type="timestamp">
+    The popup notification group for user.
+  </Property>
+  <Property name="light_group" type="string">
+    The light group for user.
+  </Property>
+  <Property name="notification_preview_group" type="timestamp">
+    The notification preview group for user.
+  </Property>
+  <Property name="reaction_notification_group" type="timestamp">
+    The reaction notification group for user.
+  </Property>
+  <Property name="call_ringtone" type="timestamp">
+    The call ringtone for user.
+  </Property>
+  <Property name="call_shakes" type="timestamp">
+    The call shakes for user.
+  </Property>
+</Properties>
+
+---
+
+## List all notification settings {{ tag: 'GET', label: '/v1/notificationsettings' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your notification settings (in a notification settings if a notification settings id is provided). By default, a maximum of ten notification settings are shown per page.
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="limit" type="integer">
+        Limit the number of notification settings returned.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/notificationsettings">
+
+    ```bash {{ title: 'cURL' }}
+    curl -G https://api.protocol.notification/v1/notification settings \
+      -H "Authorization: Bearer {token}" \
+      -d notification settings_id="xgQQXg3hrtjh7AvZ" \
+      -d limit=10
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.notificationsettings.list()
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.notification settings.list()
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->notification settings->list();
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "has_more": false,
+      "data": [
+        {
+          "_id": "Nc6yKKMpcxiiFxp6",
+          "user_id": "LoPsJaMcPBuFNjg1",
+          "notification settingsal_tone": false,
+          "notification_tone": null,
+          "shakes": null,
+          "popup_notification": null,
+          "light": null,
+          "notification_preview": false,
+          "reaction_notification": false,
+          "notification_tone_group": null,
+          "shakes_group": null,
+          "popup_notification_group": null,
+          "light_group": null,
+          "notification_preview_group": false,
+          "reaction_notification_group": false,
+          "call_ringtone": null,
+          "call_shakes": null,
+        },
+        {
+          "id": "hSIhXBhNe8X1d8Et"
+          // ...
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Create an notification settings {{ tag: 'POST', label: '/v1/notificationsettings' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to upload a new notification settings to a notification settings. See the code examples for how to send the file to the Protocol API.
+
+    ### Required attributes
+
+    <Properties>
+      <Property name="user_id" type="string">
+        Unique identifier for the user associated with the notification settings.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="POST" label="/v1/notification settings">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.notification/v1/notification settings \
+      -H "Authorization: Bearer {token}" \
+      -F file="../Invoice_room_service__Plaza_Hotel.pdf"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.notificationsettings.create({
+      user_id: 'LoPsJaMcPBuFNjg1',
+     })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.notification settings.create(file=file)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->notification settings->create([
+      'file' => $file,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "notification settingsal_tone": false,
+      "notification_tone": null,
+      "shakes": null,
+      "popup_notification": null,
+      "light": null,
+      "notification_preview": false,
+      "reaction_notification": false,
+      "notification_tone_group": null,
+      "shakes_group": null,
+      "popup_notification_group": null,
+      "light_group": null,
+      "notification_preview_group": false,
+      "reaction_notification_group": false,
+      "call_ringtone": null,
+      "call_shakes": null,
+    },
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Retrieve an notification settings {{ tag: 'GET', label: '/v1/notificationsettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve an notification settings by providing the notification settings id. Refer to [the list](#the-notification settings-model) at the top of this page to see which properties are included with notification settings objects.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/notification settings/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.notification/v1/notification settings/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.notificationsettings.get('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.notification settings.get("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->notification settings->get('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "notification settingsal_tone": false,
+      "notification_tone": null,
+      "shakes": null,
+      "popup_notification": null,
+      "light": null,
+      "notification_preview": false,
+      "reaction_notification": false,
+      "notification_tone_group": null,
+      "shakes_group": null,
+      "popup_notification_group": null,
+      "light_group": null,
+      "notification_preview_group": false,
+      "reaction_notification_group": false,
+      "call_ringtone": null,
+      "call_shakes": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Update a notification settings {{ tag: 'PUT', label: '/v1/notificationsettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to perform an update on a notification settings. Examples of updates are pinning a message, muting or archiving the notification settings, or pinning the notification settings itself.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="PUT" label="/v1/notificationsettings/xgQQXg3hrtjh7AvZ">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X PUT https://api.protocol.chat/v1/notificationsettings/xgQQXg3hrtjh7AvZ \
+      -H "Authorization: Bearer {token}" \
+      -d 'is_muted'=true
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.notificationsettings.update('xgQQXg3hrtjh7AvZ', {
+      notification settingsal_tone: true,
+    })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.notificationsettings.update("xgQQXg3hrtjh7AvZ", is_muted=True)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->notificationsettings->update('xgQQXg3hrtjh7AvZ', [
+      'is_muted' => true,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "xgQQXg3hrtjh7AvZ",
+      "user_id": "WAz8eIbvDR60rouK",
+      "notification settingsal_tone": true,
+      "notification_tone": null,
+      "shakes": null,
+      "popup_notification": null,
+      "light": null,
+      "notification_preview": false,
+      "reaction_notification": false,
+      "notification_tone_group": null,
+      "shakes_group": null,
+      "popup_notification_group": null,
+      "light_group": null,
+      "notification_preview_group": false,
+      "reaction_notification_group": false,
+      "call_ringtone": null,
+      "call_shakes": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Delete an notification settings {{ tag: 'DELETE', label: '/v1/notificationsettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to delete notification settings. Note: This will permanently delete the file.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="DELETE" label="/v1/notification settings/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X DELETE https://api.protocol.notification/v1/notification settings/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.notificationsettings.delete('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.notification settings.delete("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->notification settings->delete('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+  </Col>
+</Row>

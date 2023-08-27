@@ -1,0 +1,372 @@
+export const description =
+  'On this page, we’ll dive into the different chat settings endpoints you can use to manage chat settings programmatically.'
+
+# Chat Settings
+
+Chat settings refers to the action of preventing someone from communicating with you. On this page, we'll dive into the different chat settings endpoints you can use to manage chat settings programmatically. We'll look at how to query, upload, update, and delete chat settings. {{ className: 'lead' }}
+
+## The chat settings model
+
+The chat settings model comprises comprehensive information about the contacts you have chat settingsed.
+
+### Properties
+
+<Properties>
+  <Property name="_id" type="string">
+    Unique identifier for the chat settings.
+  </Property>
+  <Property name="user_id" type="string">
+    Unique identifier for the user associated with the chat settings.
+  </Property>
+  <Property name="theme" type="string">
+    The theme for user.
+  </Property>
+  <Property name="wallpaper" type="string">
+    The wallpaper for user.
+  </Property>
+  <Property name="enter_to_send" type="string">
+    The enter to send for user.
+  </Property>
+  <Property name="show_media" type="string">
+    The show media for user.
+  </Property>
+  <Property name="font_size" type="string">
+    The font_size for user.
+  </Property>
+  <Property name="keep_archive" type="timestamp">
+    The keep_archive for user.
+  </Property>
+  <Property name="backup" type="timestamp">
+    The backup for user.
+  </Property>
+  <Property name="history" type="timestamp">
+    The history for user.
+  </Property>
+</Properties>
+
+---
+
+## List all chat settings {{ tag: 'GET', label: '/v1/chatsettings' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your chat settings (in a chat settings if a chat settings id is provided). By default, a maximum of ten chat settings are shown per page.
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="limit" type="integer">
+        Limit the number of chat settings returned.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/chatsettings">
+
+    ```bash {{ title: 'cURL' }}
+    curl -G https://api.protocol.chat/v1/chat settings \
+      -H "Authorization: Bearer {token}" \
+      -d chat settings_id="xgQQXg3hrtjh7AvZ" \
+      -d limit=10
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.chatsettings.list()
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.chat settings.list()
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->chat settings->list();
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "has_more": false,
+      "data": [
+        {
+          "_id": "Nc6yKKMpcxiiFxp6",
+          "user_id": "LoPsJaMcPBuFNjg1",
+          "theme": null,
+          "wallpaper": null,
+          "enter_to_send": false,
+          "show_media": false,
+          "font_size": null,
+          "keep_archive": false,
+          "backup": null,
+          "history": null,
+        },
+        {
+          "id": "hSIhXBhNe8X1d8Et"
+          // ...
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Create an chat settings {{ tag: 'POST', label: '/v1/chatsettings' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to upload a new chat settings to a chat settings. See the code examples for how to send the file to the Protocol API.
+
+    ### Required attributes
+
+    <Properties>
+      <Property name="user_id" type="string">
+        Unique identifier for the user associated with the chat settings.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="POST" label="/v1/chat settings">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.chat/v1/chat settings \
+      -H "Authorization: Bearer {token}" \
+      -F file="../Invoice_room_service__Plaza_Hotel.pdf"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.chatsettings.create({
+      user_id: 'LoPsJaMcPBuFNjg1',
+     })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.chat settings.create(file=file)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->chat settings->create([
+      'file' => $file,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "theme": null,
+      "wallpaper": null,
+      "enter_to_send": false,
+      "show_media": false,
+      "font_size": null,
+      "keep_archive": false,
+      "backup": null,
+      "history": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Retrieve an chat settings {{ tag: 'GET', label: '/v1/chatsettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve an chat settings by providing the chat settings id. Refer to [the list](#the-chat settings-model) at the top of this page to see which properties are included with chat settings objects.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/chat settings/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.chat/v1/chat settings/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.chatsettings.get('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.chat settings.get("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->chat settings->get('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "theme": null,
+      "wallpaper": null,
+      "enter_to_send": false,
+      "show_media": false,
+      "font_size": null,
+      "keep_archive": false,
+      "backup": null,
+      "history": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Update a chat settings {{ tag: 'PUT', label: '/v1/chatsettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to perform an update on a chat settings. Examples of updates are pinning a message, muting or archiving the chat settings, or pinning the chat settings itself.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="PUT" label="/v1/chatsettings/xgQQXg3hrtjh7AvZ">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X PUT https://api.protocol.chat/v1/chatsettings/xgQQXg3hrtjh7AvZ \
+      -H "Authorization: Bearer {token}" \
+      -d 'is_muted'=true
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.chatsettings.update('xgQQXg3hrtjh7AvZ', {
+      enter_to_send: true,
+    })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.chatsettings.update("xgQQXg3hrtjh7AvZ", is_muted=True)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->chatsettings->update('xgQQXg3hrtjh7AvZ', [
+      'is_muted' => true,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "xgQQXg3hrtjh7AvZ",
+      "user_id": "WAz8eIbvDR60rouK",
+      "theme": null,
+      "wallpaper": null,
+      "enter_to_send": true,
+      "show_media": false,
+      "font_size": null,
+      "keep_archive": false,
+      "backup": null,
+      "history": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Delete an chat settings {{ tag: 'DELETE', label: '/v1/chatsettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to delete chat settings. Note: This will permanently delete the file.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="DELETE" label="/v1/chat settings/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X DELETE https://api.protocol.chat/v1/chat settings/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.chatsettings.delete('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.chat settings.delete("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->chat settings->delete('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+  </Col>
+</Row>

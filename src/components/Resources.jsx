@@ -24,8 +24,36 @@ const resources = [
     },
   },
   {
-    href: '/block',
-    name: 'Block',
+    href: '/privacysettings',
+    name: 'Privacy Settings',
+    description:
+      'Learn about the user model and how to create, retrieve, update, delete, and list contacts.',
+    icon: UserIcon,
+    pattern: {
+      y: 16,
+      squares: [
+        [0, 1],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/chatsettings',
+    name: 'Chat Settings',
+    description:
+      'Learn about the user model and how to create, retrieve, update, delete, and list contacts.',
+    icon: UserIcon,
+    pattern: {
+      y: 16,
+      squares: [
+        [0, 1],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/notificationsettings',
+    name: 'Notification Settings',
     description:
       'Learn about the user model and how to create, retrieve, update, delete, and list contacts.',
     icon: UserIcon,

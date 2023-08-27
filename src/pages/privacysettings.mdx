@@ -1,0 +1,358 @@
+export const description =
+  'On this page, we’ll dive into the different privacy Settings endpoints you can use to manage privacy Settings programmatically.'
+
+# Privacy Settings
+
+Privacy Settings refers to the action of preventing someone from communicating with you. On this page, we'll dive into the different privacy Settings endpoints you can use to manage privacy Settings programmatically. We'll look at how to query, upload, update, and delete privacy Settings. {{ className: 'lead' }}
+
+## The privacy settings model
+
+The privacy Settings model comprises comprehensive information about the contacts you have privacy Settingsed.
+
+### Properties
+
+<Properties>
+  <Property name="_id" type="string">
+    Unique identifier for the privacy Settings.
+  </Property>
+  <Property name="user_id" type="string">
+    Unique identifier for the user associated with the privacy Settings.
+  </Property>
+  <Property name="privacy_last_seen" type="string">
+    The privacy last seen for user.
+  </Property>
+  <Property name="privacy_profile_photo" type="string">
+    The privacy profile photo for user.
+  </Property>
+  <Property name="privacy_info" type="string">
+    The privacy info for user.
+  </Property>
+  <Property name="privacy_status" type="string">
+    The privacy status for user.
+  </Property>
+  <Property name="read_report" type="string">
+    The privacy read report for user.
+  </Property>
+  <Property name="privacy_group" type="timestamp">
+    The privacy group report for user.
+  </Property>
+</Properties>
+
+---
+
+## List all privacy settings {{ tag: 'GET', label: '/v1/privacy Settings' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve a paginated list of all your privacy Settings (in a privacy settings if a privacy settings id is provided). By default, a maximum of ten privacy Settings are shown per page.
+
+    ### Optional attributes
+
+    <Properties>
+      <Property name="limit" type="integer">
+        Limit the number of privacy Settings returned.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/privacysettings">
+
+    ```bash {{ title: 'cURL' }}
+    curl -G https://api.protocol.privacy/v1/privacy Settings \
+      -H "Authorization: Bearer {token}" \
+      -d privacy settings_id="xgQQXg3hrtjh7AvZ" \
+      -d limit=10
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.privacysettings.list()
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.privacy Settings.list()
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->privacy Settings->list();
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "has_more": false,
+      "data": [
+        {
+          "_id": "Nc6yKKMpcxiiFxp6",
+          "user_id": "LoPsJaMcPBuFNjg1",
+          "privacy_last_seen": null,
+          "privacy_profile_photo": null,
+          "privacy_info": null,
+          "privacy_status": null,
+          "read_report": false,
+          "privacy_group": null,
+        },
+        {
+          "id": "hSIhXBhNe8X1d8Et"
+          // ...
+        }
+      ]
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Create an privacy settings {{ tag: 'POST', label: '/v1/privacysettings' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to upload a new privacy Settings to a privacy settings. See the code examples for how to send the file to the Protocol API.
+
+    ### Required attributes
+
+    <Properties>
+      <Property name="user_id" type="string">
+        Unique identifier for the user associated with the privacy Settings.
+      </Property>
+    </Properties>
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="POST" label="/v1/privacy Settings">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.privacy/v1/privacy Settings \
+      -H "Authorization: Bearer {token}" \
+      -F file="../Invoice_room_service__Plaza_Hotel.pdf"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.privacysettings.create({
+      user_id: 'LoPsJaMcPBuFNjg1',
+     })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.privacy Settings.create(file=file)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->privacy Settings->create([
+      'file' => $file,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "privacy_last_seen": null,
+      "privacy_profile_photo": null,
+      "privacy_info": null,
+      "privacy_status": null,
+      "read_report": false,
+      "privacy_group": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Retrieve an privacy settings {{ tag: 'GET', label: '/v1/privacysettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to retrieve an privacy Settings by providing the privacy Settings id. Refer to [the list](#the-privacy Settings-model) at the top of this page to see which properties are included with privacy Settings objects.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="GET" label="/v1/privacy Settings/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl https://api.protocol.privacy/v1/privacy Settings/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.privacysettings.get('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.privacy Settings.get("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->privacy Settings->get('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "Nc6yKKMpcxiiFxp6",
+      "user_id": "LoPsJaMcPBuFNjg1",
+      "privacy_last_seen": null,
+      "privacy_profile_photo": null,
+      "privacy_info": null,
+      "privacy_status": null,
+      "read_report": false,
+      "privacy_group": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Update a privacy settings {{ tag: 'PUT', label: '/v1/privacysettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to perform an update on a privacy settings. Examples of updates are pinning a message, muting or archiving the privacy settings, or pinning the privacy settings itself.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="PUT" label="/v1/privacysettings/xgQQXg3hrtjh7AvZ">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X PUT https://api.protocol.privacy/v1/privacysettings/xgQQXg3hrtjh7AvZ \
+      -H "Authorization: Bearer {token}" \
+      -d 'is_muted'=true
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.privacysettings.update('xgQQXg3hrtjh7AvZ', {
+      read_report: true,
+    })
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.privacysettings.update("xgQQXg3hrtjh7AvZ", is_muted=True)
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->privacysettings->update('xgQQXg3hrtjh7AvZ', [
+      'is_muted' => true,
+    ]);
+    ```
+
+    </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "_id": "xgQQXg3hrtjh7AvZ",
+      "user_id": "WAz8eIbvDR60rouK",
+      "privacy_last_seen": null,
+      "privacy_profile_photo": null,
+      "privacy_info": null,
+      "privacy_status": null,
+      "read_report": true,
+      "privacy_group": null,
+    }
+    ```
+
+  </Col>
+</Row>
+
+---
+
+## Delete an privacy Settings {{ tag: 'DELETE', label: '/v1/privacysettings/:id' }}
+
+<Row>
+  <Col>
+
+    This endpoint allows you to delete privacy Settings. Note: This will permanently delete the file.
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="Request" tag="DELETE" label="/v1/privacy Settings/Nc6yKKMpcxiiFxp6">
+
+    ```bash {{ title: 'cURL' }}
+    curl -X DELETE https://api.protocol.privacy/v1/privacy Settings/Nc6yKKMpcxiiFxp6 \
+      -H "Authorization: Bearer {token}"
+    ```
+
+    ```js
+    import ApiClient from '@example/protocol-api'
+
+    const client = new ApiClient(token)
+
+    await client.privacysettings.delete('Nc6yKKMpcxiiFxp6')
+    ```
+
+    ```python
+    from protocol_api import ApiClient
+
+    client = ApiClient(token)
+
+    client.privacy Settings.delete("Nc6yKKMpcxiiFxp6")
+    ```
+
+    ```php
+    $client = new \Protocol\ApiClient($token);
+
+    $client->privacy Settings->delete('Nc6yKKMpcxiiFxp6');
+    ```
+
+    </CodeGroup>
+
+  </Col>
+</Row>

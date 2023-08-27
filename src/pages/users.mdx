@@ -31,6 +31,24 @@ The user model contains all the information about your users, such as their user
   <Property name="info" type="string">
     The information or description for the user.
   </Property>
+  <Property name="security_notification" type="string">
+    The user security notification.
+  </Property>
+  <Property name="reduce_call_data" type="string">
+    The reduce call data for the user.
+  </Property>
+  <Property name="proxy" type="string">
+    The proxy for the user.
+  </Property>
+  <Property name="language" type="string">
+    The language for the application.
+  </Property>
+  <Property name="linked_device" type="string">
+    The linked device for the application.
+  </Property>
+  <Property name="block_user" type="string">
+    The list of blocked users.
+  </Property>
   <Property name="last_active_at" type="timestamp">
     Timestamp of when the user was last active on the platform.
   </Property>
@@ -103,6 +121,17 @@ The user model contains all the information about your users, such as their user
           "avatar_url": "https://assets.protocol.chat/avatars/frank.jpg",
           "display_name": null,
           "info": "busy",
+          "security_notification": false,
+          "reduce_call_data": false,
+          "proxy": null,
+          "language": null,
+          "linked_device": null,
+          "block_users": [
+            {
+              "_id": "Drysg8hrFNTE6"
+              // ...
+            },
+          ],
           "last_active_at": 705103200,
           "created_at": 692233200
         },
@@ -208,6 +237,12 @@ The user model contains all the information about your users, such as their user
       "avatar_url": "https://assets.protocol.chat/avatars/kevin.jpg",
       "display_name": null,
       "info": "null",
+      "security_notification": null,
+      "reduce_call_data": null,
+      "proxy": null,
+      "language": null,
+      "linked_device": null,
+      "block_users": [],
       "last_active_at": null,
       "created_at": 692233200
     }
@@ -267,6 +302,17 @@ The user model contains all the information about your users, such as their user
       "avatar_url": "https://assets.protocol.chat/avatars/kevin.jpg",
       "display_name": null,
       "info": "null",
+      "security_notification": false,
+      "reduce_call_data": false,
+      "proxy": null,
+      "language": null,
+      "linked_device": null,
+      "block_users": [
+        {
+          "_id": "Drysg8hrFNTE6"
+          // ...
+        },
+      ],
       "last_active_at": 705103200,
       "created_at": 692233200
     }
@@ -341,7 +387,18 @@ The user model contains all the information about your users, such as their user
       "phone_number": "1-800-759-3000",
       "avatar_url": "https://assets.protocol.chat/avatars/kevin.jpg",
       "display_name": "Kevin",
-      "conversation_id": "xgQQXg3hrtjh7AvZ",
+      "info": null,
+      "security_notification": false,
+      "reduce_call_data": false,
+      "proxy": null,
+      "language": null,
+      "linked_device": null,
+      "block_users": [
+        {
+          "_id": "Drysg8hrFNTE6"
+          // ...
+        },
+      ],
       "last_active_at": 705103200,
       "created_at": 692233200
     }
