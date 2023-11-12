@@ -27,7 +27,7 @@ The group model contains all the information about your groups, including what c
   <Property name="user_member" type="array">
     An array of user objects that are members of the group.
   </Property>
-  <Property name="created_at" type="timestamp">
+  <Property name="created_at" type="number">
     Timestamp of when the group was created.
   </Property>
 </Properties>
@@ -89,7 +89,7 @@ The group model contains all the information about your groups, including what c
 
     ```json {{ title: 'Response' }}
     {
-      "has_more": false,
+      "message": "All groups!",
       "data": [
         {
           "_id": "l7cGNIBKZiNJ6wqF",
@@ -98,19 +98,19 @@ The group model contains all the information about your groups, including what c
           "avatar_url": "https://assets.protocol.chat/avatars/plazahotel.jpg",
           "user_member": [
             {
-              "username": "Hector"
+              "_id": "8274gt9wvhr2vj7"
               // ...
             },
             {
-              "username": "Cedric"
+              "_id": "7274ge9wvhr2vj7"
               // ...
             },
             {
-              "username": "Hester"
+              "_id": "3274gd9wv5wg2vj7"
               // ...
             },
             {
-              "username": "Cliff"
+              "_id": "9274gp9wv5wg2vj7
               // ...
             }
           ],
@@ -142,14 +142,14 @@ The group model contains all the information about your groups, including what c
       <Property name="name" type="string">
         The name for the group.
       </Property>
+      <Property name="description" type="string">
+        The description for the group.
+      </Property>
     </Properties>
 
     ### Optional attributes
 
     <Properties>
-      <Property name="description" type="string">
-        The description for the group.
-      </Property>
       <Property name="avatar_url" type="string">
         The avatar image URL for the group.
       </Property>
@@ -199,12 +199,11 @@ The group model contains all the information about your groups, including what c
 
     ```json {{ title: 'Response' }}
     {
-      "_id": "l7cGNIBKZiNJ6wqF",
-      "name": "Plaza Hotel",
-      "description": null,
-      "avatar_url": null,
-      "user_member": [],
-      "created_at": 69223320
+      "message": "Group created successfully",
+      "data": {
+        "acknowledged": true,
+        "insertedId": "6550e856502cbe3efc32b14d"
+    }
     }
     ```
 
@@ -262,19 +261,19 @@ The group model contains all the information about your groups, including what c
       "avatar_url": "https://assets.protocol.chat/avatars/plazahotel.jpg",
       "user_member": [
         {
-          "username": "Hector"
+          "_id": "22bd43js4385v76"
           // ...
         },
         {
-          "username": "Cedric"
+          "_id": "52bd43js6385v76"
           // ...
         },
         {
-          "username": "Hester"
+          "_id": "72bd53js4385v27"
           // ...
         },
         {
-          "username": "Cliff"
+          "_id": "42bd93js4385v27
           // ...
         }
       ],
@@ -297,12 +296,6 @@ The group model contains all the information about your groups, including what c
     ### Optional attributes
 
     <Properties>
-      <Property name="name" type="string">
-        The new name for the group.
-      </Property>
-      <Property name="description" type="string">
-        The new description for the group.
-      </Property>
       <Property name="avatar_url" type="string">
         The new avatar image URL for the group.
       </Property>
@@ -355,29 +348,14 @@ The group model contains all the information about your groups, including what c
 
     ```json {{ title: 'Response' }}
     {
-      "_id": "l7cGNIBKZiNJ6wqF",
-      "name": "Plaza Hotel",
-      "description": "The finest in New York.",
-      "avatar_url": "https://assets.protocol.chat/avatars/plazahotel.jpg",
-      "user_member": [
-        {
-          "username": "Hector"
-          // ...
-        },
-        {
-          "username": "Cedric"
-          // ...
-        },
-        {
-          "username": "Hester"
-          // ...
-        },
-        {
-          "username": "Cliff"
-          // ...
-        }
-      ],
-      "created_at": 69223320
+      "message": "Group updated successfully!",
+      "data": {
+        "acknowledged": true,
+        "modifiedCount": 1,
+        "upsertedId": null,
+        "upsertedCount": 0,
+        "matchedCount": 1
+    }
     },
     ```
 
@@ -426,6 +404,12 @@ The group model contains all the information about your groups, including what c
     ```
 
     </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "message": "Group deleted successfully!"
+    }
+    ```
 
   </Col>
 </Row>
