@@ -202,7 +202,6 @@ export const navigation = [
       { title: 'Users', href: '/users' },
       { title: 'Privacy Settings', href: '/privacysettings' },
       { title: 'Chat Settings', href: '/chatsettings' },
-      { title: 'Notification Settings', href: '/notificationsettings' },
       { title: 'Contacts', href: '/contacts' },
       { title: 'Conversations', href: '/conversations' },
       { title: 'Messages', href: '/messages' },

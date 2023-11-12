@@ -52,20 +52,6 @@ const resources = [
     },
   },
   {
-    href: '/notificationsettings',
-    name: 'Notification Settings',
-    description:
-      'Learn about the user model and how to create, retrieve, update, delete, and list contacts.',
-    icon: UserIcon,
-    pattern: {
-      y: 16,
-      squares: [
-        [0, 1],
-        [1, 3],
-      ],
-    },
-  },
-  {
     href: '/contacts',
     name: 'Contacts',
     description:

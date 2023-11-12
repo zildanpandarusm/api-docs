@@ -31,28 +31,22 @@ The user model contains all the information about your users, such as their user
   <Property name="info" type="string">
     The information or description for the user.
   </Property>
-  <Property name="security_notification" type="string">
-    The user security notification.
+  <Property name="security_notification" type="boolean">
+    The notification about security for the user.
   </Property>
-  <Property name="reduce_call_data" type="string">
+  <Property name="reduce_call_data" type="boolean">
     The reduce call data for the user.
   </Property>
-  <Property name="proxy" type="string">
-    The proxy for the user.
-  </Property>
   <Property name="language" type="string">
-    The language for the application.
+    The language of application for the user.
   </Property>
-  <Property name="linked_device" type="string">
-    The linked device for the application.
-  </Property>
-  <Property name="block_user" type="string">
+  <Property name="block_user" type="array">
     The list of blocked users.
   </Property>
-  <Property name="last_active_at" type="timestamp">
+  <Property name="last_active_at" type="number">
     Timestamp of when the user was last active on the platform.
   </Property>
-  <Property name="created_at" type="timestamp">
+  <Property name="created_at" type="number">
     Timestamp of when the user was created.
   </Property>
 </Properties>
@@ -112,7 +106,7 @@ The user model contains all the information about your users, such as their user
 
     ```json {{ title: 'Response' }}
     {
-      "has_more": false,
+      "message": "All users!",
       "data": [
         {
           "_id": "WAz8eIbvDR60rouK",
@@ -123,9 +117,7 @@ The user model contains all the information about your users, such as their user
           "info": "busy",
           "security_notification": false,
           "reduce_call_data": false,
-          "proxy": null,
-          "language": null,
-          "linked_device": null,
+          "language": "English",
           "block_users": [
             {
               "_id": "Drysg8hrFNTE6"
@@ -231,20 +223,11 @@ The user model contains all the information about your users, such as their user
 
     ```json {{ title: 'Response' }}
     {
-      "id": "WAz8eIbvDR60rouK",
-      "username": "KevinLyman",
-      "phone_number": "1-800-759-3000",
-      "avatar_url": "https://assets.protocol.chat/avatars/kevin.jpg",
-      "display_name": null,
-      "info": "null",
-      "security_notification": null,
-      "reduce_call_data": null,
-      "proxy": null,
-      "language": null,
-      "linked_device": null,
-      "block_users": [],
-      "last_active_at": null,
-      "created_at": 692233200
+      "message": "User created successfully",
+      "data": {
+        "acknowledged": true,
+        "insertedId": "6550e475502cbe3efc32b14c"
+    }
     }
     ```
 
@@ -296,25 +279,21 @@ The user model contains all the information about your users, such as their user
 
     ```json {{ title: 'Response' }}
     {
-      "id": "WAz8eIbvDR60rouK",
-      "username": "KevinLyman",
-      "phone_number": "1-800-759-3000",
-      "avatar_url": "https://assets.protocol.chat/avatars/kevin.jpg",
-      "display_name": null,
-      "info": "null",
-      "security_notification": false,
-      "reduce_call_data": false,
-      "proxy": null,
-      "language": null,
-      "linked_device": null,
-      "block_users": [
-        {
-          "_id": "Drysg8hrFNTE6"
-          // ...
-        },
-      ],
-      "last_active_at": 705103200,
-      "created_at": 692233200
+      "message": "User",
+      "data": {
+        "_id": "65466a6c1f09c499289036a3",
+        "username": "donirudh",
+        "phone_number": "0812345678",
+        "avatar_url": "http://127.0.0.1:59746/upload/1699113580892_photo_1.jpg",
+        "display_name": "Doni Rudh",
+        "info": "Busy",
+        "security_notification": "false",
+        "reduce_call_data": "false",
+        "language": "English",
+        "block_users": null,
+        "last_active_at": "63539426",
+        "created_at": 1699113580
+      }
     }
     ```
 
@@ -382,25 +361,14 @@ The user model contains all the information about your users, such as their user
 
     ```json {{ title: 'Response' }}
     {
-      "id": "WAz8eIbvDR60rouK",
-      "username": "KevinLyman",
-      "phone_number": "1-800-759-3000",
-      "avatar_url": "https://assets.protocol.chat/avatars/kevin.jpg",
-      "display_name": "Kevin",
-      "info": null,
-      "security_notification": false,
-      "reduce_call_data": false,
-      "proxy": null,
-      "language": null,
-      "linked_device": null,
-      "block_users": [
-        {
-          "_id": "Drysg8hrFNTE6"
-          // ...
-        },
-      ],
-      "last_active_at": 705103200,
-      "created_at": 692233200
+      "message": "User updated successfully!",
+      "data": {
+        "acknowledged": true,
+        "modifiedCount": 1,
+        "upsertedId": null,
+        "upsertedCount": 0,
+        "matchedCount": 1
+      }
     }
     ```
 
@@ -449,6 +417,12 @@ The user model contains all the information about your users, such as their user
     ```
 
     </CodeGroup>
+
+    ```json {{ title: 'Response' }}
+    {
+      "message": "User deleted successfully!"
+    }
+    ```
 
   </Col>
 </Row>
