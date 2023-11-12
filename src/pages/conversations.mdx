@@ -27,14 +27,7 @@ The conversation model contains all the information about the conversations betw
   <Property name="is_muted" type="boolean">
     Whether or not the conversation has been muted.
   </Property>
-  <Property name="last_active_at" type="timestamp">
-    Timestamp of when the conversation was last active.
-  </Property>
-  <Property name="last_opened_at" type="timestamp">
-    Timestamp of when the conversation was last opened by the authenticated
-    user.
-  </Property>
-  <Property name="created_at" type="timestamp">
+  <Property name="created_at" type="number">
     Timestamp of when the conversation was created.
   </Property>
 </Properties>
@@ -51,23 +44,11 @@ The conversation model contains all the information about the conversations betw
     ### Optional attributes
 
     <Properties>
-      <Property name="limit" type="integer">
-        Limit the number of conversations returned.
-      </Property>
-      <Property name="muted" type="boolean">
+      <Property name="is_muted" type="boolean">
         Only show conversations that are muted when set to `true`.
       </Property>
-      <Property name="archived" type="boolean">
-        Only show conversations that are archived when set to `true`.
-      </Property>
-      <Property name="pinned" type="boolean">
+      <Property name="is_pinned" type="boolean">
         Only show conversations that are pinned when set to `true`.
-      </Property>
-      <Property name="user_id" type="string">
-        Only show conversations for the specified user.
-      </Property>
-      <Property name="group_id" type="string">
-        Only show conversations for the specified group.
       </Property>
     </Properties>
 
@@ -113,11 +94,9 @@ The conversation model contains all the information about the conversations betw
         {
           "_id": "xgQQXg3hrtjh7AvZ",
           "user_id": "WAz8eIbvDR60rouK",
-          "group_id": null,
+          "group_id": "64554gffhsfwrhyjg",
           "is_pinned": false,
           "is_muted": false,
-          "last_active_at": 705103200,
-          "last_opened_at": 705103200,
           "created_at": 692233200,
         },
         {
@@ -189,14 +168,11 @@ The conversation model contains all the information about the conversations betw
 
     ```json {{ title: 'Response' }}
     {
-      "id": "xgQQXg3hrtjh7AvZ",
-      "user_id": "WAz8eIbvDR60rouK",
-      "group_id": null,
-      "is_pinned": false,
-      "is_muted": false,
-      "last_active_at": null,
-      "last_opened_at": null,
-      "created_at": 69223320
+      "message": "Conversation created successfully",
+      "data": {
+        "acknowledged": true,
+        "insertedId": "6550e856502cbe3efc32b14d"
+      }
     }
     ```
 
@@ -248,13 +224,11 @@ The conversation model contains all the information about the conversations betw
 
     ```json {{ title: 'Response' }}
     {
-      "id": "xgQQXg3hrtjh7AvZ",
-      "contact_id": "WAz8eIbvDR60rouK",
-      "group_id": null,
+      "_id": "xgQQXg3hrtjh7AvZ",
+      "user_id": "WAz8eIbvDR60rouK",
+      "group_id": "hdyrd55635dx35",
       "is_pinned": false,
       "is_muted": false,
-      "last_active_at": 705103200,
-      "last_opened_at": 705103200,
       "created_at": 69223320
     }
     ```
@@ -282,9 +256,6 @@ The conversation model contains all the information about the conversations betw
       </Property>
       <Property name="is_muted" type="boolean">
         Whether or not the conversation has been muted.
-      </Property>
-      <Property name="archived_at" type="timestamp">
-        Timestamp of when the conversation was archived.
       </Property>
     </Properties>
 
@@ -330,14 +301,14 @@ The conversation model contains all the information about the conversations betw
 
     ```json {{ title: 'Response' }}
     {
-      "_id": "xgQQXg3hrtjh7AvZ",
-      "user_id": "WAz8eIbvDR60rouK",
-      "group_id": "GwKvsjJC5cXRN",
-      "is_pinned": false,
-      "is_muted": true,
-      "last_active_at": 705103200,
-      "last_opened_at": 705103200,
-      "created_at": 69223320
+      "message": "Conversation updated successfully!",
+      "data": {
+        "acknowledged": true,
+        "modifiedCount": 1,
+        "upsertedId": null,
+        "upsertedCount": 0,
+        "matchedCount": 1
+      }
     }
     ```
 
@@ -386,6 +357,11 @@ The conversation model contains all the information about the conversations betw
     ```
 
     </CodeGroup>
+    ```json {{ title: 'Response' }}
+    {
+      "message": "Conversation deleted successfully!"
+    }
+    ```
 
   </Col>
 </Row>
